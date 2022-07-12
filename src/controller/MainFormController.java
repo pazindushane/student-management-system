@@ -10,6 +10,7 @@ import model.Student;
 import util.crudUtil;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -84,7 +85,18 @@ public class MainFormController implements Initializable {
 
     }
 
-    public void searchBtn(ActionEvent actionEvent) {
+    public void searchBtn(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        ResultSet result = crudUtil.execute("SELECT * FROM student WHERE studentId=?",searchStudentId.getText());
+        if (result.next()) {
+            studentId.setText(result.getString(1));
+            studentName.setText(result.getString(2));
+            studentMail.setText(result.getString(3));
+            studentContact.setText(result.getString(4));
+            studentAddress.setText(result.getString(5));
+            studentNIC.setText(result.getString(6));
+        } else {
+            new Alert(Alert.AlertType.WARNING, "Empty Result").show();
+        }
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
