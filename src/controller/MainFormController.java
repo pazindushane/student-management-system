@@ -50,6 +50,23 @@ public class MainFormController implements Initializable {
     }
 
     public void updateBtn(ActionEvent actionEvent) {
+        String newId = studentId.getText();
+        String newName = studentName.getText();
+        String newMail = studentMail.getText();
+        String newContact = studentContact.getText();
+        String newAddress = studentAddress.getText();
+        String newNic = studentNIC.getText();
+
+        Student student = new Student(newId,newName,newMail,newContact,newAddress,newNic);
+
+        try{
+            if(crudUtil.execute("UPDATE student SET studentName=?,email=?,contact=?,address=?,nic=? WHERE studentId=?",student.getStudentName(),student.getStudentEmail(),student.getStudentContact(),student.getStudentAddress(),student.getStudentNic(),student.getStudentId())){
+                new Alert(Alert.AlertType.CONFIRMATION, "Updated Student Details!..").show();
+            }
+        }catch(ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.WARNING, "Something went Wrong!..").show();
+        }
     }
 
     public void deleteBtn(ActionEvent actionEvent) {
