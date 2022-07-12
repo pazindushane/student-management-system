@@ -28,26 +28,6 @@ public class MainFormController implements Initializable {
     public JFXTextField searchStudentId;
     public JFXButton searchBtn;
 
-    public void addBtn(ActionEvent actionEvent) {
-        String id = studentId.getText();
-        String name = studentName.getText();
-        String mail = studentMail.getText();
-        String contact = studentContact.getText();
-        String address = studentAddress.getText();
-        String nic = studentNIC.getText();
-
-        Student student = new Student(id,name,mail,contact,address,nic);
-
-        try{
-            if(crudUtil.execute("INSERT INTO student VALUES (?,?,?,?,?,?)",student.getStudentId(),student.getStudentName(),student.getStudentEmail(),student.getStudentContact(),student.getStudentAddress(),student.getStudentNic())){
-                new Alert(Alert.AlertType.CONFIRMATION, "Saved Student!..").show();
-            }
-        }catch(ClassNotFoundException | SQLException e){
-            e.printStackTrace();
-            new Alert(Alert.AlertType.WARNING, "Something went Wrong!..").show();
-        }
-
-    }
 
     public void updateBtn(ActionEvent actionEvent) {
         String newId = studentId.getText();
@@ -70,6 +50,38 @@ public class MainFormController implements Initializable {
     }
 
     public void deleteBtn(ActionEvent actionEvent) {
+        String Id = studentId.getText();
+
+        try{
+            if (crudUtil.execute("DELETE FROM student WHERE studentId=? ",Id)){
+                new Alert(Alert.AlertType.CONFIRMATION, "Deleted Student!..").show();
+            }else{
+                new Alert(Alert.AlertType.WARNING, "Something went Wrong!..").show();
+            }
+        }catch (SQLException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void addBtn(ActionEvent actionEvent) {
+        String id = studentId.getText();
+        String name = studentName.getText();
+        String mail = studentMail.getText();
+        String contact = studentContact.getText();
+        String address = studentAddress.getText();
+        String nic = studentNIC.getText();
+
+        Student student = new Student(id,name,mail,contact,address,nic);
+
+        try{
+            if(crudUtil.execute("INSERT INTO student VALUES (?,?,?,?,?,?)",student.getStudentId(),student.getStudentName(),student.getStudentEmail(),student.getStudentContact(),student.getStudentAddress(),student.getStudentNic())){
+                new Alert(Alert.AlertType.CONFIRMATION, "Saved Student!..").show();
+            }
+        }catch(ClassNotFoundException | SQLException e){
+            e.printStackTrace();
+            new Alert(Alert.AlertType.WARNING, "Something went Wrong!..").show();
+        }
+
     }
 
     public void searchBtn(ActionEvent actionEvent) {
