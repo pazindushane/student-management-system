@@ -1,0 +1,120 @@
+DROP TABLE IF EXISTS ijse;
+CREATE DATABASE ijse;
+USE ijse;
+
+CREATE TABLE IF NOT EXISTS student(
+                                       studentId VARCHAR(45),
+                                       studentName VARCHAR(45) ,
+                                       email TEXT,
+				       contact VARCHAR(20),
+                                       address TEXT,
+				       nic VARCHAR(45),
+                                       CONSTRAINT PRIMARY KEY(studentId)
+);
+
+INSERT INTO student VALUES('S001','Nimal','niaml@gmail','077','panadura','90185v');
+INSERT INTO student VALUES('S002','Kamal','Kamal@gmail','078','colombo','91185v');
+INSERT INTO student VALUES('S003','Wimal','Wimal@gmail','076','kalutara','92185v');
+INSERT INTO student VALUES('S004','Samal','Samal@gmail','075','Galle','93185v');
+INSERT INTO student VALUES('S005','Namal','Namal@gmail','071','wadduwa','94185v');
+
+
+CREATE TABLE IF NOT EXISTS teacher(
+	teacherId VARCHAR(45),
+	teacherName VARCHAR(45),
+	teacherNic VARCHAR(45),
+	teacherContact VARCHAR(45),
+	teacherAddress TEXT,
+	CONSTRAINT PRIMARY KEY(teacherId)
+);
+
+INSERT INTO teacher VALUES('T001','Namal','94185v','071','panadura');
+INSERT INTO teacher VALUES('T002','kamal','95185v','072','colombo');
+INSERT INTO teacher VALUES('T003','wamal','96185v','074','kalutara');
+INSERT INTO teacher VALUES('T004','samal','97185v','075','wadduwa');
+INSERT INTO teacher VALUES('T005','bamal','98185v','076','galle');
+
+
+CREATE TABLE IF NOT EXISTS subject(
+	subjectId VARCHAR(45),
+	subjectName VARCHAR(45),
+	credit DOUBLE,
+	teacherId VARCHAR(45),
+	CONSTRAINT PRIMARY KEY(subjectId),
+	CONSTRAINT FOREIGN KEY (teacherId) REFERENCES teacher(teacherId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO subject VALUES('SU001','maths',100,'T001');
+INSERT INTO subject VALUES('SU002','sinhala',100,'T002');
+INSERT INTO subject VALUES('SU003','english',100,'T003');
+INSERT INTO subject VALUES('SU004','science',100,'T004');
+INSERT INTO subject VALUES('SU005','music',100,'T005');
+
+
+CREATE TABLE IF NOT EXISTS course(
+	courseId VARCHAR(45),
+	courseName VARCHAR(45),
+	cost DOUBLE,
+	duration VARCHAR(45),
+	subjectId VARCHAR(45),
+	CONSTRAINT PRIMARY KEY(courseId),
+	CONSTRAINT FOREIGN KEY (subjectId) REFERENCES subject(subjectId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO course VALUES('C001','maths-course',10000,'6-months','SU001');
+INSERT INTO course VALUES('C002','sinhala-course',20000,'7-months','SU002');
+INSERT INTO course VALUES('C003','english-course',30000,'8-months','SU003');
+INSERT INTO course VALUES('C004','science-course',40000,'9-months','SU004');
+INSERT INTO course VALUES('C005','music-course',50000,'12-months','SU005');
+
+
+CREATE TABLE IF NOT EXISTS intake(
+	intakeId VARCHAR(45),
+	startDate DATE,
+	intakeCol VARCHAR(45),
+	description VARCHAR(45),
+	courseId VARCHAR(45),
+	CONSTRAINT PRIMARY KEY(intakeId),
+	CONSTRAINT FOREIGN KEY (courseId) REFERENCES course(courseId) ON DELETE CASCADE ON UPDATE CASCADE
+
+);
+
+INSERT INTO intake VALUES('I001','2022-01-01','Jan','this is maths course','C001');
+INSERT INTO intake VALUES('I002','2022-02-02','Feb','this is sinhala course','C002');
+INSERT INTO intake VALUES('I003','2022-03-03','Mar','this is english course','C003');
+INSERT INTO intake VALUES('I004','2022-04-04','Apr','this is science course','C004');
+INSERT INTO intake VALUES('I005','2022-05-05','May','this is music course','C005');
+
+
+
+CREATE TABLE IF NOT EXISTS registation(
+	registationId VARCHAR(45),
+	regDate DATE,
+	studentId VARCHAR(45),
+	intakeId VARCHAR(45),
+	CONSTRAINT PRIMARY KEY(registationId),
+	CONSTRAINT FOREIGN KEY (intakeId) REFERENCES intake(intakeId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO registation VALUES('R001','2022-01-01','S001','I001');
+INSERT INTO registation VALUES('R002','2022-02-02','S002','I002');
+INSERT INTO registation VALUES('R003','2022-03-03','S003','I003');
+INSERT INTO registatione VALUES('R004','2022-04-04','S004','I004');
+INSERT INTO registation VALUES('R005','2022-05-05','S005','I005');
+
+
+
+CREATE TABLE IF NOT EXISTS payment(
+	paymentId VARCHAR(45),
+	date DATE,
+	cost DOUBLE,
+	registationId VARCHAR(45),
+	CONSTRAINT PRIMARY KEY(paymentId),
+	CONSTRAINT FOREIGN KEY (registationId) REFERENCES registation(registationId) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+INSERT INTO payment VALUES('P001','2022-01-01',10000,'R001');
+INSERT INTO payment VALUES('P002','2022-02-02',20000,'R002');
+INSERT INTO payment VALUES('P003','2022-03-03',30000,'R003');
+INSERT INTO payment VALUES('P004','2022-04-04',40000,'R004');
+INSERT INTO payment VALUES('P005','2022-05-05',50000,'R005');
