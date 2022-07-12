@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="context" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainFormController">
+    <children>
+        <Text fill="#4a0909" layoutX="22.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manage Students">
+            <font>
+                <Font name="System Bold" size="25.0" />
+            </font>
+        </Text>
+        <JFXTextField fx:id="studentId" layoutX="144.0" layoutY="152.0" prefHeight="25.0" prefWidth="187.0" />
+        <Text layoutX="41.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Id :">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <JFXTextField fx:id="studentName" layoutX="145.0" layoutY="213.0" prefHeight="25.0" prefWidth="187.0" />
+        <Text layoutX="41.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name :">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <JFXTextField fx:id="studentMail" layoutX="145.0" layoutY="273.0" prefHeight="25.0" prefWidth="187.0" />
+        <Text layoutX="41.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-Mail">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <JFXTextField fx:id="studentContact" layoutX="145.0" layoutY="330.0" prefHeight="25.0" prefWidth="187.0" />
+        <Text layoutX="41.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact :">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <JFXTextField fx:id="studentAddress" layoutX="145.0" layoutY="384.0" prefHeight="25.0" prefWidth="187.0" />
+        <Text layoutX="41.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <JFXTextField fx:id="studentNIC" layoutX="145.0" layoutY="437.0" prefHeight="25.0" prefWidth="187.0" />
+        <Text layoutX="41.0" layoutY="460.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NIC :">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Text>
+        <JFXButton layoutX="521.0" layoutY="261.0" onAction="#addBtn" prefHeight="41.0" prefWidth="187.0" style="-fx-background-color: lightgreen" text="Add Student">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="521.0" layoutY="331.0" onAction="#updateBtn" prefHeight="41.0" prefWidth="187.0" style="-fx-background-color: lightgreen" text="Update Student">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </JFXButton>
+        <JFXButton layoutX="521.0" layoutY="401.0" onAction="#deleteBtn" prefHeight="41.0" prefWidth="187.0" style="-fx-background-color: lightgreen" text="Delete Student">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </JFXButton>
+        <JFXTextField fx:id="searchStudentId" layoutX="470.0" layoutY="30.0" prefHeight="25.0" prefWidth="187.0" />
+        <Text layoutX="294.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Student Id :">
+            <font>
+                <Font name="System Bold" size="19.0" />
+            </font>
+        </Text>
+        <JFXButton layoutX="667.0" layoutY="28.0" onAction="#searchBtn" prefHeight="41.0" prefWidth="120.0" style="-fx-background-color: lightgreen" text="Search">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </JFXButton>
+    </children>
+</AnchorPane>
