@@ -17,8 +17,7 @@ JavaFx &  jphoenix was used to build the frontend part of the application. <br/>
 
 use below link
 
-<a href="https://openjfx.io/openjfx-docs/#IDE-Intellij" target="_blank">Steps to Run application<</a>
+<a href="https://openjfx.io/openjfx-docs/#IDE-Intellij" target="_blank">Steps to Run application >></a>
 
 ```
-
 <b>NOTE: </b>Thank you for visiting my Project 🤝 Please do ⭐ this repo if you liked my work.
